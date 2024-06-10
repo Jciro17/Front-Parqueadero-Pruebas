@@ -1,0 +1,49 @@
+<div class="wrapper">
+  <div class="header">
+    <h1 class="title">Generar Celda</h1>
+  </div>
+  <div class="content">
+    <form [formGroup]="celdaForm" (ngSubmit)="generarCelda()" class="form">
+      <div class="form-group">
+        <label for="parqueadero" class="form-label">Parqueadero</label>
+        <select
+          id="parqueadero"
+          class="form-select"
+          formControlName="parqueadero"
+        ></select>
+      </div>
+      <div class="form-group">
+        <label for="nombre" class="form-label">Nombre de la Celda</label>
+        <input
+          type="text"
+          id="nombre"
+          class="form-input"
+          formControlName="nombre"
+        />
+      </div>
+      <div class="form-group">
+        <label for="tipoVehiculo" class="form-label">Tipo de Vehículo</label>
+        <select
+          id="tipoVehiculo"
+          class="form-select"
+          formControlName="tipoVehiculo"
+        >
+          <option *ngFor="let tipo of tipoVehiculo" [value]="tipo.id">
+            {{ tipo.nombre }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="estadoCelda" class="form-label">Estado de la Celda</label>
+        <select
+          id="estadoCelda"
+          class="form-select"
+          formControlName="estadoCelda"
+        ></select>
+      </div>
+      <div class="form-group text-center">
+        <button type="submit" class="btn">Generar Celda</button>
+      </div>
+    </form>
+  </div>
+</div>

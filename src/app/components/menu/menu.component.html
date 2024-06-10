@@ -1,0 +1,10 @@
+<nav *ngIf="showMenu" class="menu">
+  <ul class="menu-items">
+    <li><a routerLink="/inicio">Inicio</a></li>
+    <li><a routerLink="/registrar-vehiculo">Registro Vehiculo</a></li>
+    <li><a routerLink="/generar-celda">Generar Celda</a></li>
+  </ul>
+  <div class="logout">
+    <button (click)="logout()">Cerrar Sesión</button>
+  </div>
+</nav>
