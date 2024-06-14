@@ -1,4 +1,3 @@
-/* Estilos similares a los de otros componentes */
 body {
   font-family: "Roboto", sans-serif;
   background-color: #f4f7f6;
@@ -50,13 +49,13 @@ body {
 }
 
 .form-label {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   font-weight: 500;
 }
 
 .form-input,
 .form-select {
-  width: 90%;
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
