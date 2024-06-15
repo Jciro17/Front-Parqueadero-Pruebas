@@ -11,6 +11,7 @@
           class="form-select"
           formControlName="parqueadero"
         >
+          <option [ngValue]="null" disabled>Seleccione un parqueadero</option>
           <option [ngValue]="item" *ngFor="let item of parqueadero">
             {{ item.nombre }}
           </option>
@@ -32,6 +33,9 @@
           class="form-select"
           formControlName="tipoVehiculo"
         >
+          <option [ngValue]="null" disabled>
+            Seleccione un tipo de vehículo
+          </option>
           <option [ngValue]="item" *ngFor="let item of tipoVehiculo">
             {{ item.nombre }}
           </option>
@@ -44,13 +48,16 @@
           class="form-select"
           formControlName="estadoCelda"
         >
+          <option [ngValue]="null" disabled>Seleccione un estado</option>
           <option [ngValue]="item" *ngFor="let item of estadoCelda">
             {{ item.nombre }}
           </option>
         </select>
       </div>
       <div class="form-group text-center">
-        <button type="submit" class="btn">Generar Celda</button>
+        <button type="submit" class="btn" [disabled]="celdaForm.invalid">
+          Generar Celda
+        </button>
       </div>
     </form>
   </div>

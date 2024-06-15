@@ -14,8 +14,8 @@ export class GenerarCeldaComponent implements OnInit {
   celdaForm: FormGroup;
   parqueadero: any;
   tipoVehiculo: any;
-  celda: any;
   estadoCelda: any;
+  isSubmitted: boolean = false;
 
   constructor(
     public fb: FormBuilder,
@@ -26,9 +26,9 @@ export class GenerarCeldaComponent implements OnInit {
   ) {
     this.celdaForm = this.fb.group({
       nombre: ['', Validators.required],
-      parqueadero: ['', Validators.required],
-      tipoVehiculo: ['', Validators.required],
-      estadoCelda: ['', Validators.required],
+      parqueadero: [null, Validators.required],
+      tipoVehiculo: [null, Validators.required],
+      estadoCelda: [null, Validators.required],
     });
   }
 
@@ -60,16 +60,33 @@ export class GenerarCeldaComponent implements OnInit {
   }
 
   generarCelda(): void {
-    this.celdaService.saveCelda(this.celdaForm.value).subscribe(
-      (resp) => {
-        alert(resp.mensajes[0]);
-        this.celdaForm.reset();
-        console.log(resp);
-      },
-      (error) => {
-        console.error(error);
-        alert(error.error.mensajes[0]);
+    this.isSubmitted = true;
+    if (this.celdaForm.valid) {
+      this.celdaService.saveCelda(this.celdaForm.value).subscribe(
+        (resp) => {
+          alert(resp.mensajes[0]);
+          this.celdaForm.reset();
+          this.isSubmitted = false;
+        },
+        (error) => {
+          console.error(error);
+          alert(error.error.mensajes[0]);
+        }
+      );
+    } else {
+      this.logFormErrors();
+    }
+  }
+
+  private logFormErrors(): void {
+    const controls = this.celdaForm.controls;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        const controlErrors = controls[name].errors;
+        for (const key in controlErrors) {
+          console.error(`Error in field ${name}: ${key}`);
+        }
       }
-    );
+    }
   }
 }
